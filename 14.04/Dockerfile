@@ -1,7 +1,6 @@
-FROM node:4.3
+FROM ubuntu:14.04
 MAINTAINER Li Da <lidaemail@qq.com>
 RUN sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/' /etc/apt/sources.list
-RUN npm install -g cnpm --registry=https://registry.npm.taobao.org
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         openssh-server \
