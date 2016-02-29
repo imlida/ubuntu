@@ -1,6 +1,5 @@
 FROM ubuntu:14.04
 MAINTAINER Li Da <lidaemail@qq.com>
-RUN sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/' /etc/apt/sources.list
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         openssh-server \
