@@ -9,7 +9,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 RUN mkdir -p /var/run/sshd /var/log/supervisor \
     && sed -i 's/^#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config \
-	&& sed -i 's/^#PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+	&& sed -i 's/^PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 
 # SSH login fix. Otherwise user is kicked off after login
 RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
