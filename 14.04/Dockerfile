@@ -7,8 +7,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         supervisor \
     && rm -rf /var/lib/apt/lists/*
 
-RUN mkdir -p /var/run/sshd /var/log/supervisor \
-    && sed -i 's/^#PasswordAuthentication yes/PasswordAuthentication yes/' /etc/ssh/sshd_config
+RUN mkdir -p /var/run/sshd /var/log/supervisor 
 
 # SSH login fix. Otherwise user is kicked off after login
 RUN sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' -i /etc/pam.d/sshd
@@ -22,6 +21,8 @@ COPY supervisord.conf /etc/supervisor/conf.d/supervisord.conf
 
 COPY run /app/run
 RUN chmod a+x /app/run
+
+RUN echo "root:root" | chpasswd
 
 EXPOSE 22
 
